@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="text-center">Flickr</h1>
+  <div class="form-group">
+    <input type="search" class="form-control" (keyup)="search($event)" placeholder="Search images">
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images; let i = index">
+      <div class="card">
+        <img src="{{image.image}}" title="{{image.title}}" (click)="showLightbox(i)" data-toggle="modal"
+          data-target="#exampleModalCenter">
+      </div>
+    </div>
+  </div>
+  <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()">
+  </div>
+
+  <ng-image-fullscreen-view [images]="images" [imageIndex]="selectedImageIndex" [show]="showFlag"
+    (close)="closeEventHandler()"></ng-image-fullscreen-view>
+
+</div>
